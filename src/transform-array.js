@@ -18,7 +18,11 @@ function transform(arr) {
   const copyArr = arr.slice();
   for (let i = 0; i < copyArr.length; i++) {
     if (copyArr[i] === '--discard-next') copyArr.splice(i, 2);
-    if (copyArr[i] === '--discard-prev') copyArr.splice(i - 1, 2);
+    if (copyArr[0] === '--discard-prev' && i === 0) {
+      copyArr.splice(0, 1)
+    } else if (copyArr[i] === '--discard-prev') {
+      copyArr.splice(i - 1, 2)
+    };
     if (copyArr[i] === '--double-next') copyArr[i] = copyArr[i + 1];
     if (copyArr[i] === '--double-prev') copyArr[i] = copyArr[i - 1];
   }
